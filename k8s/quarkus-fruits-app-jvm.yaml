@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: quarkus-jvm-fruits
+  name: quarkus-jvm-fruits
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: quarkus-jvm-fruits
+  template:
+    metadata:
+      labels:
+        name: quarkus-jvm-fruits
+    spec:
+      containers:
+      - image: quay.io/mavazque/quarkus-jvm-fruits:latest
+        name: quarkus-jvm-fruits
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: QUARKUS_DATASOURCE_URL
+          value: "jdbc:postgresql://postgresql:5432/quarkus_test"
+        - name: QUARKUS_DATASOURCE_USERNAME
+          value: "quarkus_test"
+        - name: QUARKUS_DATASOURCE_PASSWORD
+          value: "quarkus_test"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: quarkus-jvm-fruits
+  name: quarkus-jvm-fruits 
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: quarkus-jvm-fruits
+  type: ClusterIP
