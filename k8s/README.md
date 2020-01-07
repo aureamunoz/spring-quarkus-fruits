@@ -36,3 +36,17 @@ kubectl -n $NAMESPACE apply -f quarkus-fruits-app-jvm.yaml
 kubectl -n $NAMESPACE wait --timeout=300s --for=condition=available deployment/quarkus-jvm-fruits
 ~~~
 
+## Deploying Springboot JVM
+
+~~~sh
+export NAMESPACE=springboot-jvm-fruits-app
+# Deploy Postgresql
+kubectl -n $NAMESPACE apply -f postgresql.yaml
+# Wait for Postgresql deployment to be ready
+kubectl -n $NAMESPACE wait --timeout=300s --for=condition=available deployment/postgresql
+# Deploy Fruits App
+kubectl -n $NAMESPACE apply -f springboot-fruits-app-jvm.yaml
+# Wait for Springboot app deployment to be ready
+kubectl -n $NAMESPACE wait --timeout=300s --for=condition=available deployment/springboot-jvm-fruits
+~~~
+
