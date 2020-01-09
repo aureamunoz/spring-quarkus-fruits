@@ -15,7 +15,7 @@ spec:
         name: quarkus-native-fruits
     spec:
       containers:
-      - image: quay.io/mavazque/quarkus-native-fruits:latest
+      - image: quay.io/amunozhe/spring-quarkus-fruits-native:latest
         name: quarkus-native-fruits
         imagePullPolicy: Always
         ports:
