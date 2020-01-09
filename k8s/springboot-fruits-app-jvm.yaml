@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: springboot-jvm-fruits
+  name: springboot-jvm-fruits
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: springboot-jvm-fruits
+  template:
+    metadata:
+      labels:
+        name: springboot-jvm-fruits
+    spec:
+      containers:
+      - image: quay.io/amunozhe/spring-boot-crud:latest
+        name: springboot-jvm-fruits
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:postgresql://postgresql:5432/quarkus_test"
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "quarkus_test"
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: "quarkus_test"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: springboot-jvm-fruits
+  name: springboot-jvm-fruits 
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: springboot-jvm-fruits
+  type: ClusterIP
