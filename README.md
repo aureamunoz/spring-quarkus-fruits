@@ -9,13 +9,13 @@ TODO : Define what is the goal of this demo
 ## How to play locally
 
 1- Generate the project within a terminal
-```
+```bash
 mvn io.quarkus:quarkus-maven-plugin:1.1.1.Final:create \
     -DprojectGroupId=dev.snowdrop \
-    -DprojectArtifactId=spring-quarkus-fruits \
-    -DclassName="com.example.FruitController" \
-    -Dpath="/api/fruits" \
-    -Dextensions="spring-web,resteasy-jsonb,spring-data-jpa"
+    -DprojectArtifactId=quarkus-spring-jpa \
+    -DclassName="com.example.FruitController" \
+    -Dpath="/api/fruits" \
+    -Dextensions="spring-web,resteasy-jsonb,spring-data-jpa"
 ```
 
 2- Add postgres dependency
