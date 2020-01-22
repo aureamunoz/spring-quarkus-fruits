@@ -42,7 +42,7 @@ TODO : Define what is the goal of this demo
   ## Bussiness logic
   Add a package `service` that will contain the needed code to access to fruit endpoint
   #####Fruit entity
-  ```
+  ```java
     package com.example.service;
     
     import javax.persistence.Entity;
@@ -85,7 +85,7 @@ TODO : Define what is the goal of this demo
    ```
 #####FruitRepository
 In order to access to Fruit entity we need a Spring `CrudRepository`
-```
+```java
     package com.example.service;
     
     import org.springframework.data.repository.CrudRepository;
@@ -95,7 +95,7 @@ In order to access to Fruit entity we need a Spring `CrudRepository`
 ```
 #####FruitController
 And finally, the controller providing the urls to access to the fruits:
- ```
+ ```java
     package com.example.service;
     
     import com.example.exception.NotFoundException;
@@ -188,7 +188,7 @@ And finally, the controller providing the urls to access to the fruits:
 5- Add some Exception to manage the errors
 Create an `exception` package and add the following classes
 ##### NotFoundException
-```
+```java
 package com.example.exception;
 
 import org.springframework.http.HttpStatus;
@@ -204,7 +204,7 @@ public class NotFoundException extends RuntimeException {
 }
 ```
 #####UnsupportedMediaTypeException
-```
+```java
 package com.example.exception;
 
 import org.springframework.http.HttpStatus;
@@ -220,7 +220,7 @@ public class UnprocessableEntityException extends RuntimeException {
 }
 ```
 #####UnprocessableEntityException
-```
+```java
 package com.example.exception;
 
 import org.springframework.http.HttpStatus;
@@ -238,7 +238,8 @@ public class UnprocessableEntityException extends RuntimeException {
 6- Add an index.html in /resources/META-INF.resources in order to provide an UI
 
 #####index.html
-```<!doctype html>
+```xml
+  <!doctype html>
    <html>
    <head>
        <meta charset="utf-8"/>
