@@ -28,7 +28,7 @@ TODO : Define what is the goal of this demo
 
 3- Add datasource config 
    ```
-   quarkus.datasource.url=jdbc:${DB_HOST}:${DB_NAME}
+   quarkus.datasource.url=jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
    quarkus.datasource.username=${DB_USER}
    quarkus.datasource.password=${DB_PASSWORD}   
    quarkus.datasource.driver=org.postgresql.Driver
@@ -397,7 +397,12 @@ We can populate the data base with some fruits
 
 7- Launch the app in dev mode
    ```bash
-   mvn compile quarkus:dev -DDB_HOST=postgresql -DDB_USER=quarkus_test -DDB_PASSWORD=quarkus_test -DDB_NAME=quarkus_test
+   mvn compile quarkus:dev \
+      -DDB_HOST=localhost \
+      -DDB_PORT=5432 \
+      -DDB_USER=quarkus_test \
+      -DDB_PASSWORD=quarkus_test \
+      -DDB_NAME=quarkus_test
    ```
 
 
