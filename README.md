@@ -1,6 +1,17 @@
-1- Generate the project
+# Spring JPA on Quarkus
+
+TODO : Define what is the goal of this demo
+
+## Table of contents
+
+  * [Table of contents](#table-of-contents)
+  * [How to play locally](#how-to-play-locally)
+
+## How to play locally
+
+1- Generate the project within a terminal
 ```
-mvn io.quarkus:quarkus-maven-plugin:1.0.0.Final:create \
+mvn io.quarkus:quarkus-maven-plugin:1.1.1.Final:create \
     -DprojectGroupId=dev.snowdrop \
     -DprojectArtifactId=spring-quarkus-fruits \
     -DclassName="com.example.FruitController" \
