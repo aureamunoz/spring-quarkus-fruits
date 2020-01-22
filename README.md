@@ -4,7 +4,6 @@ TODO : Define what is the goal of this demo
 
 ## Table of contents
 
-  * [Table of contents](#table-of-contents)
   * [How to play locally](#how-to-play-locally)
 
 ## How to play locally
