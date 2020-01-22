@@ -39,9 +39,10 @@ TODO : Define what is the goal of this demo
    quarkus.hibernate-orm.sql-load-script=import.sql
    ```
 4- Add some code to the application    
-  ## Bussiness logic
+  #### Bussiness logic
   Add a package `service` that will contain the needed code to access to fruit endpoint
-  #####Fruit entity
+  
+  ##### Fruit entity
   ```java
     package com.example.service;
     
@@ -83,7 +84,7 @@ TODO : Define what is the goal of this demo
         }
     }
    ```
-#####FruitRepository
+##### FruitRepository
 In order to access to Fruit entity we need a Spring `CrudRepository`
 ```java
     package com.example.service;
@@ -93,7 +94,7 @@ In order to access to Fruit entity we need a Spring `CrudRepository`
     public interface FruitRepository extends CrudRepository<Fruit, Integer> {
     }
 ```
-#####FruitController
+##### FruitController
 And finally, the controller providing the urls to access to the fruits:
  ```java
     package com.example.service;
@@ -203,7 +204,7 @@ public class NotFoundException extends RuntimeException {
 
 }
 ```
-#####UnsupportedMediaTypeException
+##### UnsupportedMediaTypeException
 ```java
 package com.example.exception;
 
@@ -219,7 +220,7 @@ public class UnprocessableEntityException extends RuntimeException {
 
 }
 ```
-#####UnprocessableEntityException
+##### UnprocessableEntityException
 ```java
 package com.example.exception;
 
@@ -235,9 +236,9 @@ public class UnprocessableEntityException extends RuntimeException {
 
 }
 ```
-6- Add an index.html in /resources/META-INF.resources in order to provide an UI
+6- Add an index.html in `/resources/META-INF.resources` in order to provide an UI
 
-#####index.html
+##### index.html
 ```xml
   <!doctype html>
    <html>
