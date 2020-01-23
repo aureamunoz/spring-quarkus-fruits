@@ -9,9 +9,10 @@ The purpose of this demo is to showcase how you can :
 - Deploy it on the cluster using :
   - Plain kubernetes files
   - The `Halkyon` operator and Developer `hal` client
-
+  
 # Table of contents
 
+  * [Prerequisites](#prerequisites) 
   * [How to play locally](#how-to-play-locally)
      * [Create a project](#create-a-project)
      * [Add some code](#add-some-code)
@@ -26,6 +27,16 @@ The purpose of this demo is to showcase how you can :
      * [With the help of hal/halkyon](#with-the-help-of-halhalkyon)
      * [Using plain k8s resources](#using-plain-k8s-resources)
   * [Using locally H2](#using-locally-h2)
+
+## Prerequisites  
+
+- JDK >= 8 installed
+- Apache Maven >=3.5
+- Openshift cluster 4.x
+- oc client installed
+- hal tool
+- Halkyon, KubeDB and Tekton operators deployed
+- Docker client and docker server
 
 ## How to play locally
 
