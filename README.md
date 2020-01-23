@@ -59,7 +59,7 @@ Make sure to have the following configuration in your `application.properties` (
 
 - Add a package `service` that will contain the needed code to access and manipulate the fruits via the endpoint
   
-  - Fruit entity
+  #### Fruit entity
   ```java
     package com.example.service;
     
