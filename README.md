@@ -5,7 +5,8 @@ TODO : Define what is the goal of this demo
 # Table of contents
 
   * [How to play locally](#how-to-play-locally)
-     * [Bussiness logic](#bussiness-logic)
+     * [Create a project](#create-a-project)
+     * [Add some code](#add-some-code)
         * [Fruit entity](#fruit-entity)
         * [FruitRepository](#fruitrepository)
         * [FruitController](#fruitcontroller)
@@ -17,7 +18,9 @@ TODO : Define what is the goal of this demo
 
 ## How to play locally
 
-1- Generate the project within a terminal
+### Create a project
+
+- Generate the project within a terminal
    ```bash
    mvn io.quarkus:quarkus-maven-plugin:1.1.1.Final:create \
        -DprojectGroupId=dev.snowdrop \
@@ -27,7 +30,7 @@ TODO : Define what is the goal of this demo
        -Dextensions="spring-web,resteasy-jsonb,spring-data-jpa"
    ```
 
-2- Add postgres dependency
+- Add postgres dependency
 
 To install the PostgreSQL driver dependency, just run the following command
 ```shell script
@@ -41,8 +44,7 @@ Or add the following dependency in the `pom.xml` file:
    </dependency>
    ```  
    
-
-3- Add datasource config
+- Add datasource config
 
 Make sure to have the following configuration in your `application.properties` (located in src/main/resources)
    ```
@@ -53,9 +55,9 @@ Make sure to have the following configuration in your `application.properties` (
    quarkus.datasource.max-size=8
    quarkus.datasource.min-size=2
    ```
-4- Add some code to the application    
-  ##### Bussiness logic
-  Add a package `service` that will contain the needed code to access and manipulate the fruits via the endpoint
+### Add some code
+
+- Add a package `service` that will contain the needed code to access and manipulate the fruits via the endpoint
   
   - Fruit entity
   ```java
