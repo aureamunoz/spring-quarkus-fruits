@@ -5,16 +5,15 @@ TODO : Define what is the goal of this demo
 # Table of contents
 
   * [How to play locally](#how-to-play-locally)
-        * [Bussiness logic](#bussiness-logic)
-           * [Fruit entity](#fruit-entity)
-           * [FruitRepository](#fruitrepository)
-           * [FruitController](#fruitcontroller)
-           * [NotFoundException](#notfoundexception)
-           * [UnsupportedMediaTypeException](#unsupportedmediatypeexception)
-           * [UnprocessableEntityException](#unprocessableentityexception)
-           * [index.html](#indexhtml)
+     * [Bussiness logic](#bussiness-logic)
+        * [Fruit entity](#fruit-entity)
+        * [FruitRepository](#fruitrepository)
+        * [FruitController](#fruitcontroller)
+        * [NotFoundException](#notfoundexception)
+        * [UnsupportedMediaTypeException](#unsupportedmediatypeexception)
+        * [UnprocessableEntityException](#unprocessableentityexception)
+        * [index.html](#indexhtml)
   * [Using locally H2](#using-locally-h2)
-
 
 ## How to play locally
 
