@@ -1,6 +1,14 @@
 # Spring JPA on Quarkus
 
-TODO : Define what is the goal of this demo
+The purpose of this demo is to showcase how you can :
+
+- Create a new `Quarkus Spring JPA project` using a maven archetype
+- Configure the Database `Datasource` using env var to access a `PostgreSQL DB`
+- Create the different Java classes used by Spring to expose using `REST` the `CRUD` methods
+- Run you project `locally` or in the `cloud`
+- Deploy it on the cluster using :
+  - Plain kubernetes files
+  - The `Halkyon` operator and Developer `hal` client
 
 # Table of contents
 
