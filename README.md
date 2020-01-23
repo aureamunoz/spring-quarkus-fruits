@@ -19,14 +19,23 @@ TODO : Define what is the goal of this demo
    ```
 
 2- Add postgres dependency
+
+To install the PostgreSQL driver dependency, just run the following command
+```shell script
+    ./mvnw quarkus:add-extension -Dextensions="jdbc-postgresql"
+   ```
+Or add the following dependency in the `pom.xml` file:
    ```xml
    <dependency>
          <groupId>io.quarkus</groupId>
          <artifactId>quarkus-jdbc-postgresql</artifactId>
    </dependency>
-   ```
+   ```  
+   
 
-3- Add datasource config 
+3- Add datasource config
+
+Make sure to have the following configuration in your `application.properties` (located in src/main/resources)
    ```
    quarkus.datasource.url=jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
    quarkus.datasource.username=${DB_USER}
@@ -34,15 +43,12 @@ TODO : Define what is the goal of this demo
    quarkus.datasource.driver=org.postgresql.Driver
    quarkus.datasource.max-size=8
    quarkus.datasource.min-size=2
-   
-   quarkus.hibernate-orm.database.generation=drop-and-create
-   quarkus.hibernate-orm.sql-load-script=import.sql
    ```
 4- Add some code to the application    
-  #### Bussiness logic
-  Add a package `service` that will contain the needed code to access to fruit endpoint
+  ##### Bussiness logic
+  Add a package `service` that will contain the needed code to access and manipulate the fruits via the endpoint
   
-  ##### Fruit entity
+  - Fruit entity
   ```java
     package com.example.service;
     
@@ -84,8 +90,9 @@ TODO : Define what is the goal of this demo
         }
     }
    ```
-##### FruitRepository
-In order to access to Fruit entity we need a Spring `CrudRepository`
+- FruitRepository
+
+We need a Spring `CrudRepository` providing methods modifying the database.
 ```java
     package com.example.service;
     
@@ -94,8 +101,9 @@ In order to access to Fruit entity we need a Spring `CrudRepository`
     public interface FruitRepository extends CrudRepository<Fruit, Integer> {
     }
 ```
-##### FruitController
-And finally, the controller providing the urls to access to the fruits:
+- FruitController
+
+And finally, the Spring Controller that will allow CRUD operation on fruits:
  ```java
     package com.example.service;
     
@@ -186,9 +194,10 @@ And finally, the controller providing the urls to access to the fruits:
     
     }
    ```
-5- Add some Exception to manage the errors
+5- Add some Exceptions to manage the errors
+
 Create an `exception` package and add the following classes
-##### NotFoundException
+- NotFoundException
 ```java
 package com.example.exception;
 
@@ -204,7 +213,7 @@ public class NotFoundException extends RuntimeException {
 
 }
 ```
-##### UnsupportedMediaTypeException
+- UnsupportedMediaTypeException
 ```java
 package com.example.exception;
 
@@ -220,7 +229,7 @@ public class UnprocessableEntityException extends RuntimeException {
 
 }
 ```
-##### UnprocessableEntityException
+- UnprocessableEntityException
 ```java
 package com.example.exception;
 
@@ -237,8 +246,6 @@ public class UnprocessableEntityException extends RuntimeException {
 }
 ```
 6- Add an index.html in `/resources/META-INF.resources` in order to provide an UI
-
-##### index.html
 ```xml
   <!doctype html>
    <html>
@@ -384,15 +391,20 @@ public class UnprocessableEntityException extends RuntimeException {
 
 ```
 
-4- Add import.sql with following content
-We can populate the data base with some fruits
+7- Add import.sql with following content
+
   ```sql
   insert into fruit (name) values ('Cherry');
   insert into fruit (name) values ('Apple');
   insert into fruit (name) values ('Banana');
   ```
+We use `quarkus.hibernate-orm.database.generation=drop-and-create` in conjunction with `import.sql` , the database schema will be properly recreated and your data (stored in import.sql) will be used to repopulate it from scratch
+```
+    quarkus.hibernate-orm.database.generation=drop-and-create
+    quarkus.hibernate-orm.sql-load-script=import.sql
+```
 
-5- Launch the database
+8- Launch the database
    ```bash
    docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 --name quarkus_test \
       -e POSTGRES_USER=quarkus_test \
@@ -402,7 +414,7 @@ We can populate the data base with some fruits
       postgres:11.5
    ```
 
-7- Launch the app in dev mode
+9- Launch the app in dev mode
    ```bash
    mvn compile quarkus:dev \
       -DDB_HOST=localhost \
