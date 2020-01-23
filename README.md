@@ -5,6 +5,16 @@ TODO : Define what is the goal of this demo
 # Table of contents
 
   * [How to play locally](#how-to-play-locally)
+        * [Bussiness logic](#bussiness-logic)
+           * [Fruit entity](#fruit-entity)
+           * [FruitRepository](#fruitrepository)
+           * [FruitController](#fruitcontroller)
+           * [NotFoundException](#notfoundexception)
+           * [UnsupportedMediaTypeException](#unsupportedmediatypeexception)
+           * [UnprocessableEntityException](#unprocessableentityexception)
+           * [index.html](#indexhtml)
+  * [Using locally H2](#using-locally-h2)
+
 
 ## How to play locally
 
@@ -423,5 +433,50 @@ We use `quarkus.hibernate-orm.database.generation=drop-and-create` in conjunctio
       -DDB_PASSWORD=quarkus_test \
       -DDB_NAME=quarkus_test
    ```
+## Using locally H2
 
+- Steps to execute to create the Quarkus REST project
+```bash
+mvn io.quarkus:quarkus-maven-plugin:1.1.1.Final:create \
+    -DprojectGroupId=dev.snowdrop \
+    -DprojectArtifactId=quarkus-spring-jpa \
+    -DclassName="com.example.FruitController" \
+    -Dpath="/api/fruits" \
+    -Dextensions="spring-web,resteasy-jsonb,spring-data-jpa"
+```
+- Add postgres dependency
+   ```xml
+   <dependency>
+         <groupId>io.quarkus</groupId>
+         <artifactId>quarkus-jdbc-h2</artifactId>
+   </dependency>
+   ```
+- Add datasource config
+  ```
+  quarkus.datasource.url=jdbc:h2:tcp://localhost/mem:quarkus_test
+  quarkus.datasource.driver=org.h2.Driver
+  quarkus.datasource.username=quarkus_test
+  quarkus.datasource.password=
+  
+  quarkus.hibernate-orm.dialect=org.hibernate.dialect.H2Dialect
+  quarkus.hibernate-orm.database.generation=drop-and-create
+  quarkus.hibernate-orm.sql-load-script=import.sql
+  ```
+- Add import.sql with following content
+  ```sql
+  insert into fruit (name) values ('Cherry');
+  insert into fruit (name) values ('Apple');
+  insert into fruit (name) values ('Banana'); 
+  ```
+  
+- Start locally the h2 database
+  ```bash
+  cd /path/to/h2/installed
+  java -cp bin/h2-1.4.199.jar org.h2.tools.Server -ifNotExists
+  ```  
+  
+- Launch the app in dev mode
+  ```bash
+  mvn compile quarkus:dev  
+  ```
 
