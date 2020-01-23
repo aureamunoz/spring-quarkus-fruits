@@ -101,7 +101,7 @@ Make sure to have the following configuration in your `application.properties` (
         }
     }
    ```
-- FruitRepository
+#### FruitRepository
 
 We need a Spring `CrudRepository` providing methods modifying the database.
 ```java
@@ -112,7 +112,7 @@ We need a Spring `CrudRepository` providing methods modifying the database.
     public interface FruitRepository extends CrudRepository<Fruit, Integer> {
     }
 ```
-- FruitController
+#### FruitController
 
 And finally, the Spring Controller that will allow CRUD operation on fruits:
  ```java
@@ -205,10 +205,10 @@ And finally, the Spring Controller that will allow CRUD operation on fruits:
     
     }
    ```
-5- Add some Exceptions to manage the errors
+- Add some Exceptions to manage the errors
 
-Create an `exception` package and add the following classes
-- NotFoundException
+- Create an `exception` package and add the following classes
+#### NotFoundException
 ```java
 package com.example.exception;
 
@@ -224,7 +224,7 @@ public class NotFoundException extends RuntimeException {
 
 }
 ```
-- UnsupportedMediaTypeException
+#### UnsupportedMediaTypeException
 ```java
 package com.example.exception;
 
@@ -240,7 +240,7 @@ public class UnprocessableEntityException extends RuntimeException {
 
 }
 ```
-- UnprocessableEntityException
+#### UnprocessableEntityException
 ```java
 package com.example.exception;
 
@@ -256,7 +256,8 @@ public class UnprocessableEntityException extends RuntimeException {
 
 }
 ```
-6- Add an index.html in `/resources/META-INF.resources` in order to provide an UI
+- Add an index.html in `/resources/META-INF.resources` in order to provide an UI
+#### index.html
 ```xml
   <!doctype html>
    <html>
@@ -402,7 +403,7 @@ public class UnprocessableEntityException extends RuntimeException {
 
 ```
 
-7- Add import.sql with following content
+- Add import.sql with following content
 
   ```sql
   insert into fruit (name) values ('Cherry');
@@ -415,7 +416,7 @@ We use `quarkus.hibernate-orm.database.generation=drop-and-create` in conjunctio
     quarkus.hibernate-orm.sql-load-script=import.sql
 ```
 
-8- Launch the database
+- Launch the database
    ```bash
    docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 --name quarkus_test \
       -e POSTGRES_USER=quarkus_test \
@@ -425,7 +426,7 @@ We use `quarkus.hibernate-orm.database.generation=drop-and-create` in conjunctio
       postgres:11.5
    ```
 
-9- Launch the app in dev mode
+- Launch the app in dev mode
    ```bash
    mvn compile quarkus:dev \
       -DDB_HOST=localhost \
