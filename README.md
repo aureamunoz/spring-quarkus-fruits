@@ -478,6 +478,12 @@ Make sure to have the following configuration in your `application.properties` (
   ? Category database
   ? Type Postgres
   ? Version  [Use arrows to move, space to select, type to filter]
+    10.2
+  ❯ 10.6
+    11.1
+    11.2
+    9.6
+    9.6.7
   ...
   ```  
 - Next, bind/link the capability information to the Component using the secret
