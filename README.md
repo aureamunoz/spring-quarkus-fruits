@@ -14,6 +14,9 @@ TODO : Define what is the goal of this demo
         * [UnsupportedMediaTypeException](#unsupportedmediatypeexception)
         * [UnprocessableEntityException](#unprocessableentityexception)
         * [index.html](#indexhtml)
+  * [Deploy on the cluster](#deploy-on-the-cluster)
+     * [With the help of hal/halkyon](#with-the-help-of-halhalkyon)
+     * [Using plain k8s resources](#using-plain-k8s-resources)
   * [Using locally H2](#using-locally-h2)
 
 ## How to play locally
@@ -433,6 +436,49 @@ Make sure to have the following configuration in your `application.properties` (
      -DDB_PASSWORD=quarkus_test \
      -DDB_NAME=quarkus_test
   ```
+
+## Deploy on the cluster
+
+### With the help of hal/halkyon
+
+- Create first a component for the Maven module using the hal client
+  ```bash
+  hal component create 
+  ? Runtime quarkus
+  ? Version 1.1.1.Final
+  ? Expose microservice Yes
+  ? Port 8080
+  ? Use code generator No
+  ? Local component directory  [Use arrows to move, space to select, type to filter]
+    quarkus-rest
+  ❯ quarkus-spring-jpa
+  ```
+- Create next a `Postgresql Database` capability using the following hal command
+  ```bash
+  hal capability create
+  ? Category database
+  ? Type Postgres
+  ? Version  [Use arrows to move, space to select, type to filter]
+  ...
+  ```  
+- Next, bind/link the capability information to the Component using the secret
+  ```bash
+  hal link create
+  ❯ Selected target: 
+  ? Target component: quarkus-spring-jpa
+  ? Use Secret Yes
+  ❯ Selected link type: Secret
+  ? Secret (only potential matches shown) postgres-capability-config
+  ? Name (quarkus-spring-jpa-link-1579770809293878000) (quarkus-spring-jpa-link....)
+  ```  
+- Check if the component,link and capability have their status equal to ready
+  ```bash
+  oc get component,link,capability
+  ```
+- Open the index page to create some `Fruits` and enjoy !
+
+### Using plain k8s resources
+  
 ## Using locally H2
 
 - Steps to execute to create the Quarkus REST project
