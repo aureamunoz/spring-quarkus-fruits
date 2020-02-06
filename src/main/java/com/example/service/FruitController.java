@@ -1,8 +1,6 @@
 package com.example.service;
 
-import com.example.exception.NotFoundException;
-import com.example.exception.UnprocessableEntityException;
-import com.example.exception.UnsupportedMediaTypeException;
+import com.example.exception.FruitsExceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,21 +65,21 @@ public class FruitController {
 
     private void verifyFruitExists(Integer id) {
         if (!repository.existsById(id)) {
-            throw new NotFoundException(String.format("Fruit with id=%d was not found", id));
+            throw new FruitsExceptions.NotFoundException(String.format("Fruit with id=%d was not found", id));
         }
     }
 
     private void verifyCorrectPayload(Fruit fruit) {
         if (Objects.isNull(fruit)) {
-            throw new UnsupportedMediaTypeException("Fruit cannot be null");
+            throw new FruitsExceptions.UnsupportedMediaTypeException("Fruit cannot be null");
         }
 
         if (Objects.isNull(fruit.getName()) || fruit.getName().trim().length() == 0) {
-            throw new UnprocessableEntityException("The name is required!");
+            throw new FruitsExceptions.UnprocessableEntityException("The name is required!");
         }
 
         if (!Objects.isNull(fruit.getId())) {
-            throw new UnprocessableEntityException("Id field must be generated");
+            throw new FruitsExceptions.UnprocessableEntityException("Id field must be generated");
         }
     }
 

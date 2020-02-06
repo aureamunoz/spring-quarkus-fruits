@@ -229,54 +229,44 @@ Make sure to have the following configuration in your `application.properties` (
      ```
 - Add some Exceptions to manage the errors
 
-- First, create an `exception` package and add the following classes
-  #### NotFoundException
-  ```java
-  package com.example.exception;
-  
-  import org.springframework.http.HttpStatus;
-  import org.springframework.web.bind.annotation.ResponseStatus;
-  
-  @ResponseStatus(HttpStatus.NOT_FOUND)
-  public class NotFoundException extends RuntimeException {
-  
-      public NotFoundException(String message) {
-          super(message);
-      }
-  
-  }
-  ```
-  #### UnsupportedMediaTypeException
-  ```java
-  package com.example.exception;
-  
-  import org.springframework.http.HttpStatus;
-  import org.springframework.web.bind.annotation.ResponseStatus;
-  
-  @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-  public class UnsupportedMediaTypeException extends RuntimeException {
-  
-      public UnsupportedMediaTypeException(String message) {
-          super(message);
-      }
-  
-  }
-  ```
-  #### UnprocessableEntityException
-  ```java
-  package com.example.exception;
-  
-  import org.springframework.http.HttpStatus;
-  import org.springframework.web.bind.annotation.ResponseStatus;
-  
-  @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-  public class UnprocessableEntityException extends RuntimeException {
-  
-      public UnprocessableEntityException(String message) {
-          super(message);
-      }
-  
-  }
+- First, create a `FruitsException` Wrapper class in an `exception` package and add the following inner classes `NotFoundException`, `UnsupportedMediaTypeException` and `UnprocessableEntityException`: 
+ 
+```java
+ package com.example.exception;
+ 
+ import org.springframework.http.HttpStatus;
+ import org.springframework.web.bind.annotation.ResponseStatus;
+ 
+ public class FruitsExceptions {
+ 
+     @ResponseStatus(HttpStatus.NOT_FOUND)
+     public static class NotFoundException extends RuntimeException {
+ 
+         public NotFoundException(String message) {
+             super(message);
+         }
+ 
+     }
+ 
+     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+     public static class UnprocessableEntityException extends RuntimeException {
+ 
+         public UnprocessableEntityException(String message) {
+             super(message);
+         }
+ 
+     }
+ 
+     @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
+     public static class UnsupportedMediaTypeException extends RuntimeException {
+ 
+         public UnsupportedMediaTypeException(String message) {
+             super(message);
+         }
+ 
+     }
+ }
+
   ```
 - Add an index.html in `/resources/META-INF.resources` in order to provide an UI
   #### index.html
